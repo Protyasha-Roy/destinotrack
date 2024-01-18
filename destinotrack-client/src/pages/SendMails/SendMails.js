@@ -60,11 +60,13 @@ const SendMultipleMail = () => {
             placeholder="Select recipient"
             onChange={(value) => setRecipient(value)}
           >
-            <Option value="All Students">All Students</Option>
-            <Option value="Science Club">Science Club</Option>
-            <Option value="Programming Club">Programming Club</Option>
-            <Option value="Debate Club">Debate Club</Option>
-            <Option value="Language Club">Language Club</Option>
+            <Option value="scienceA">Science A</Option>
+            <Option value="scienceB">Science B</Option>
+            <Option value="commerceA">Commerce A</Option>
+            <Option value="commerceB">Commerce B</Option>
+            <Option value="artsA">Arts A</Option>
+            <Option value="artsB">Arts B</Option>
+            <Option value="other">Other</Option>
           </Select>
         </Form.Item>
         <Form.Item

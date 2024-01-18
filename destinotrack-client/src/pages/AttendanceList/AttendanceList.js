@@ -66,9 +66,9 @@ const AttendanceList = () => {
       render: (text) => text.join(', '),
     },
     {
-      title: 'Club',
-      dataIndex: 'clubName',
-      key: 'clubName',
+      title: 'Group',
+      dataIndex: 'groupName',
+      key: 'groupName',
     },
     {
       title: 'Actions',

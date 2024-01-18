@@ -121,7 +121,7 @@ app.post('/submitForm', async (req, res) => {
 });
 
 app.post('/checkAttendance', async (req, res) => {
-  const { rolls, clubName, userEmail } = req.body;
+  const { rolls, groupName, userEmail } = req.body;
 
   try {
     // Check attendance against the students database
@@ -129,7 +129,7 @@ app.post('/checkAttendance', async (req, res) => {
       rolls.map(async (roll) => {
         const student = await studentsCollection.findOne({
           roll,
-          'clubsToJoin': clubName,
+          group: groupName,
           userEmail
         });
 
@@ -154,12 +154,12 @@ app.post('/checkAttendance', async (req, res) => {
 
 app.post('/addToAttendance', async (req, res) => {
   try {
-    const { rolls, clubName, userEmail } = req.body;
+    const { rolls, groupName, userEmail } = req.body;
 
     // Ensure rolls is an array
     if (Array.isArray(rolls)) {
       // Check if any rolls do not exist in the studentsCollection
-      const allStudents = await studentsCollection.find({ clubsToJoin: clubName, userEmail }).toArray();
+      const allStudents = await studentsCollection.find({ group: groupName, userEmail }).toArray();
       const allRolls = allStudents.map((student) => student.roll);
 
       const absentRolls = allRolls.filter((roll) => !rolls.includes(roll));
@@ -173,7 +173,7 @@ app.post('/addToAttendance', async (req, res) => {
 
       const formattedDate = `${year}-${month}-${day}`;
 
-      await attendanceCollection.insertOne({ presentRolls, absentRolls, clubName, date: formattedDate, userEmail });
+      await attendanceCollection.insertOne({ presentRolls, absentRolls, groupName, date: formattedDate, userEmail });
 
       return res.status(200).json({ message: 'Added to attendance successfully!' });
     } else {
@@ -199,9 +199,8 @@ app.post('/sendMail', async (req, res) => {
       const allStudents = await studentsCollection.find({userEmail: userEmail}).toArray();
       recipients = allStudents.map((student) => student.email);
     } else {
-      // Get emails based on the club
-      const clubStudents = await studentsCollection.find({ 'clubsToJoin': recipient, userEmail: userEmail }).toArray();
-      recipients = clubStudents.map((student) => student.email);
+      const groupStudents = await studentsCollection.find({ group: recipient, userEmail: userEmail }).toArray();
+      recipients = groupStudents.map((student) => student.email);
     }
 
     // Send email to each recipient

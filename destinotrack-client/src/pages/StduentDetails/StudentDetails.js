@@ -61,7 +61,6 @@ const StudentDetails = () => {
       facebookLink: studentData.facebookLink || '',
       sessionYear: studentData.sessionYear || '',
       roll: studentData.roll || '',
-      clubsToJoin: studentData.clubsToJoin || [],
     });
   }, [studentData, form]);
 
@@ -210,9 +209,12 @@ const StudentDetails = () => {
       <Form.Item label="Group" name="group">
         {editing ? (
          <Select>
-            <Option value="science">Science</Option>
-            <Option value="commerce">Commerce</Option>
-            <Option value="arts">Arts</Option>
+            <Option value="scienceA">Science A</Option>
+            <Option value="scienceB">Science B</Option>
+            <Option value="commerceA">Commerce A</Option>
+            <Option value="commerceB">Commerce B</Option>
+            <Option value="artsA">Arts A</Option>
+            <Option value="artsB">Arts B</Option>
             <Option value="other">Other</Option>
        </Select>
         ) : (
@@ -225,19 +227,6 @@ const StudentDetails = () => {
           <Input />
         ) : (
           <span>{studentData.roll}</span>
-        )}
-      </Form.Item>
-
-      <Form.Item label="Clubs" name="clubsToJoin">
-        {editing ? (
-         <Checkbox.Group>
-            <Checkbox value="Science Club">Science Club</Checkbox>
-            <Checkbox value="Programming Club">Programming Club</Checkbox>
-            <Checkbox value="Debate Club">Debate Club</Checkbox>
-            <Checkbox value="Language Club">Language Club</Checkbox>
-       </Checkbox.Group>
-        ) : (
-          <span>{studentData.clubsToJoin ? studentData.clubsToJoin.join(', ') : 'No clubs selected'}</span>
         )}
       </Form.Item>
 

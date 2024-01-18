@@ -8,7 +8,7 @@ const { Option } = Select;
 
 const Attendance = () => {
   const [rolls, setRolls] = useState('');
-  const [clubName, setClubName] = useState('');
+  const [groupName, setGroupName] = useState('');
   const [checkingMessage, setCheckingMessage] = useState('');
   const [isAttendance, setIsAttendace] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,7 +26,7 @@ const Attendance = () => {
       const userEmail = localStorage.getItem('userEmail');
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/checkAttendance`, {
         rolls: values.rolls.split(',').map((roll) => roll.trim()), // Convert rolls to an array
-        clubName: values.clubName,
+        groupName: values.groupName,
         userEmail
       });
 
@@ -49,7 +49,7 @@ const Attendance = () => {
       const userEmail = localStorage.getItem('userEmail');
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/addToAttendance`, {
         rolls: rolls.split(',').map((roll) => roll.trim()), // Convert rolls to an array
-        clubName,
+        groupName,
         userEmail
       });
 
@@ -83,23 +83,26 @@ const Attendance = () => {
           />
         </Form.Item>
         <Form.Item
-          label="Select club name"
-          name="clubName"
+          label="Select group name"
+          name="groupName"
           rules={[
             {
               required: true,
-              message: 'Please select a club name',
+              message: 'Please select a group',
             },
           ]}
         >
           <Select
-            placeholder="Select club name"
-            onChange={(value) => setClubName(value)}
+            placeholder="Select a group"
+            onChange={(value) => setGroupName(value)}
           >
-            <Option value="Science Club">Science Club</Option>
-            <Option value="Programming Club">Programming Club</Option>
-            <Option value="Language Club">Language Club</Option>
-            <Option value="Debate Club">Debate Club</Option>
+            <Option value="scienceA">Science A</Option>
+            <Option value="scienceB">Science B</Option>
+            <Option value="commerceA">Commerce A</Option>
+            <Option value="commerceB">Commerce B</Option>
+            <Option value="artsA">Arts A</Option>
+            <Option value="artsB">Arts B</Option>
+            <Option value="other">Other</Option>
           </Select>
         </Form.Item>
         <Form.Item>

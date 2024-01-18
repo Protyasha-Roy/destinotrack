@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Select, DatePicker, Button, Checkbox, message } from 'antd';
+import { Form, Input, Select, DatePicker, Button, message } from 'antd';
 import { UserOutlined, PhoneOutlined, MailOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
@@ -177,9 +177,12 @@ const RegistrationForm = () => {
         rules={[{ required: true, message: 'Please select group' }]}
       >
         <Select>
-          <Option value="science">Science</Option>
-          <Option value="commerce">Commerce</Option>
-          <Option value="arts">Arts</Option>
+          <Option value="scienceA">Science A</Option>
+          <Option value="scienceB">Science B</Option>
+          <Option value="commerceA">Commerce A</Option>
+          <Option value="commerceB">Commerce B</Option>
+          <Option value="artsA">Arts A</Option>
+          <Option value="artsB">Arts B</Option>
           <Option value="other">Other</Option>
         </Select>
       </Form.Item>
@@ -191,18 +194,6 @@ const RegistrationForm = () => {
         rules={[{ required: true, message: 'Please enter roll' }]}
       >
         <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Clubs to Join"
-        name="clubsToJoin"
-      >
-        <Checkbox.Group>
-          <Checkbox value="Science Club">Science Club</Checkbox>
-          <Checkbox value="Programming Club">Programming Club</Checkbox>
-          <Checkbox value="Debate Club">Debate Club</Checkbox>
-          <Checkbox value="Language Club">Language Club</Checkbox>
-        </Checkbox.Group>
       </Form.Item>
 
       {/* Submit Button */}

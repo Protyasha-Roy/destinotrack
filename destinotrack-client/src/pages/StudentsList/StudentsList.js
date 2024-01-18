@@ -143,12 +143,6 @@ const StudentsList = () => {
       key: 'email',
     },
     {
-      title: 'Clubs',
-      dataIndex: 'clubsToJoin',
-      key: 'clubsToJoin',
-      render: (text) => (Array.isArray(text) ? text.join(', ') : ''),// Assumes 'clubs' is an array in the student object
-    },
-    {
       title: 'Actions',
       key: 'actions',
       render: (text, record) => (
