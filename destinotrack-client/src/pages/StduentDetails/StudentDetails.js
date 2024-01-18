@@ -209,13 +209,13 @@ const StudentDetails = () => {
       <Form.Item label="Group" name="group">
         {editing ? (
          <Select>
-            <Option value="scienceA">Science A</Option>
-            <Option value="scienceB">Science B</Option>
-            <Option value="commerceA">Commerce A</Option>
-            <Option value="commerceB">Commerce B</Option>
-            <Option value="artsA">Arts A</Option>
-            <Option value="artsB">Arts B</Option>
-            <Option value="other">Other</Option>
+            <Option value="Science-A">Science A</Option>
+            <Option value="Science-B">Science B</Option>
+            <Option value="Commerce-A">Commerce A</Option>
+            <Option value="Commerce-B">Commerce B</Option>
+            <Option value="Arts-A">Arts A</Option>
+            <Option value="Arts-B">Arts B</Option>
+            <Option value="Other">Other</Option>
        </Select>
         ) : (
           <span>{studentData.group}</span>
