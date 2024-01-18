@@ -50,7 +50,7 @@ export default function HomeDash() {
 
   return (
     <section>
-        <h2 className='headingText'><span className='appName'>UniTrack</span> - Student Management System</h2>
+        <h2 className='headingText'><span className='appName'>Destinotrack</span> - Student Management System</h2>
         <div className='container'>
                 <div className='container pointer'>
                     <div onClick={() => navigate(`/userProfile`)} className='border p-5 m-5 container'>

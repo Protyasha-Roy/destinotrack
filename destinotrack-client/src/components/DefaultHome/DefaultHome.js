@@ -9,10 +9,10 @@ const DefaultHome = () => {
 
     return(
         <section>
-            <h2 className='headingText'><span className='appName'>UniTrack</span> - Student Management System</h2>
+            <h2 className='headingText'><span className='appName'>Destinotrack</span> - Student Management System</h2>
             <div className='container'>
                 <div className='centeredDiv'>
-                    <h3>#Things you can do in <span className='appName'>UniTrack</span></h3>
+                    <h3>#Things you can do in <span className='appName'>Destinotrack</span></h3>
                     <ul>
                         <li>Add student data.</li>
                         <li>Manage student data.</li>
