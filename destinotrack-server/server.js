@@ -121,7 +121,7 @@ app.post('/submitForm', async (req, res) => {
 });
 
 app.post('/checkAttendance', async (req, res) => {
-  const { rolls, groupName, userEmail } = req.body;
+  const { rolls, groupName, userEmail, sessionYear } = req.body;
 
   try {
     // Check attendance against the students database
@@ -130,6 +130,7 @@ app.post('/checkAttendance', async (req, res) => {
         const student = await studentsCollection.findOne({
           roll,
           group: groupName,
+          sessionYear,
           userEmail
         });
 
@@ -154,12 +155,12 @@ app.post('/checkAttendance', async (req, res) => {
 
 app.post('/addToAttendance', async (req, res) => {
   try {
-    const { rolls, groupName, userEmail } = req.body;
+    const { rolls, groupName, userEmail, sessionYear } = req.body;
 
     // Ensure rolls is an array
     if (Array.isArray(rolls)) {
       // Check if any rolls do not exist in the studentsCollection
-      const allStudents = await studentsCollection.find({ group: groupName, userEmail }).toArray();
+      const allStudents = await studentsCollection.find({ group: groupName, userEmail, sessionYear }).toArray();
       const allRolls = allStudents.map((student) => student.roll);
 
       const absentRolls = allRolls.filter((roll) => !rolls.includes(roll));
@@ -173,7 +174,7 @@ app.post('/addToAttendance', async (req, res) => {
 
       const formattedDate = `${year}-${month}-${day}`;
 
-      await attendanceCollection.insertOne({ presentRolls, absentRolls, groupName, date: formattedDate, userEmail });
+      await attendanceCollection.insertOne({ presentRolls, absentRolls, groupName, date: formattedDate, userEmail, sessionYear });
 
       return res.status(200).json({ message: 'Added to attendance successfully!' });
     } else {
@@ -189,17 +190,17 @@ app.post('/addToAttendance', async (req, res) => {
 
 
 app.post('/sendMail', async (req, res) => {
-  const { recipient, subject, messageToSend, userEmail, fromEmail, smtpKey } = req.body;
+  const { sessionYear, recipient, subject, messageToSend, userEmail, fromEmail, smtpKey } = req.body;
 
   try {
     let recipients = [];
 
     if (recipient === 'All Students') {
       // Get all students' emails
-      const allStudents = await studentsCollection.find({userEmail: userEmail}).toArray();
+      const allStudents = await studentsCollection.find({userEmail: userEmail, sessionYear}).toArray();
       recipients = allStudents.map((student) => student.email);
     } else {
-      const groupStudents = await studentsCollection.find({ group: recipient, userEmail: userEmail }).toArray();
+      const groupStudents = await studentsCollection.find({ group: recipient, userEmail: userEmail, sessionYear: sessionYear }).toArray();
       recipients = groupStudents.map((student) => student.email);
     }
 
@@ -239,7 +240,8 @@ app.post('/sendMail', async (req, res) => {
       recipient: recipient,
       subject: subject,
       message: messageToSend,
-      from: fromEmail
+      from: fromEmail,
+      sessionYear: sessionYear,
     }
 
     await emailsCollection.insertOne(dataToInsert);

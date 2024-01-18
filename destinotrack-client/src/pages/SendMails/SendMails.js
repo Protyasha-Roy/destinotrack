@@ -9,6 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const SendMultipleMail = () => {
+  const [sessionYear, setSessionYear] = useState('');
   const [recipient, setRecipient] = useState('');
   const [subject, setSubject] = useState('');
   const [messageToSend, setMessageToSend] = useState('');
@@ -23,6 +24,7 @@ const SendMultipleMail = () => {
     try {
       setIsSubmitting(true);
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/sendMail`, {
+        sessionYear,
         recipient,
         subject,
         messageToSend,
@@ -46,6 +48,21 @@ const SendMultipleMail = () => {
     <div className='w-4 m-auto' style={{ marginTop: '50px' }}>
       <Header />
       <Form form={form} onFinish={handleSendMail} layout='vertical'>
+        <Form.Item
+            label="Enter session-year"
+            name="sessionYear"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter session year',
+              },
+            ]}
+          >
+            <Input
+              placeholder="Enter session year like 2022-23"
+              onChange={(e) => setSessionYear(e.target.value)}
+            />
+        </Form.Item>
         <Form.Item
           label="Whom to send"
           name="recipient"

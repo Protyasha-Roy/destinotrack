@@ -68,6 +68,11 @@ const AllMails = () => {
       key: 'from',
     },
     {
+      title: 'Session',
+      dataIndex: 'sessionYear',
+      key: 'sessionYear',
+    },
+    {
       title: 'Send to',
       dataIndex: 'recipient',
       key: 'recipient',

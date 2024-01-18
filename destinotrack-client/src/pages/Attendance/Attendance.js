@@ -9,6 +9,7 @@ const { Option } = Select;
 const Attendance = () => {
   const [rolls, setRolls] = useState('');
   const [groupName, setGroupName] = useState('');
+  const [sessionYear, setSessionYear] = useState('');
   const [checkingMessage, setCheckingMessage] = useState('');
   const [isAttendance, setIsAttendace] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,6 +28,7 @@ const Attendance = () => {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/checkAttendance`, {
         rolls: values.rolls.split(',').map((roll) => roll.trim()), // Convert rolls to an array
         groupName: values.groupName,
+        sessionYear: values.sessionYear,
         userEmail
       });
 
@@ -50,6 +52,7 @@ const Attendance = () => {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/addToAttendance`, {
         rolls: rolls.split(',').map((roll) => roll.trim()), // Convert rolls to an array
         groupName,
+        sessionYear,
         userEmail
       });
 
@@ -80,6 +83,21 @@ const Attendance = () => {
           rows={5}
             placeholder="Enter rolls separated by commas"
             onChange={(e) => setRolls(e.target.value)}
+          />
+        </Form.Item>
+        <Form.Item
+          label="Enter session-year"
+          name="sessionYear"
+          rules={[
+            {
+              required: true,
+              message: 'Please enter session year',
+            },
+          ]}
+        >
+          <Input
+            placeholder="Enter session year like 2022-23"
+            onChange={(e) => setSessionYear(e.target.value)}
           />
         </Form.Item>
         <Form.Item

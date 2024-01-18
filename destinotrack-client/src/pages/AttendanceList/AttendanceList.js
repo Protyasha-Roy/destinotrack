@@ -54,6 +54,16 @@ const AttendanceList = () => {
       key: 'date',
     },
     {
+      title: 'Session',
+      dataIndex: 'sessionYear',
+      key: 'sessionYear',
+    },
+    {
+      title: 'Group',
+      dataIndex: 'groupName',
+      key: 'groupName',
+    },
+    {
       title: 'Present Rolls',
       dataIndex: 'presentRolls',
       key: 'presentRolls',
@@ -64,11 +74,6 @@ const AttendanceList = () => {
       dataIndex: 'absentRolls',
       key: 'absentRolls',
       render: (text) => text.join(', '),
-    },
-    {
-      title: 'Group',
-      dataIndex: 'groupName',
-      key: 'groupName',
     },
     {
       title: 'Actions',
