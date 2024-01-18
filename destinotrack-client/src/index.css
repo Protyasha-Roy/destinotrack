@@ -1,0 +1,99 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.blueText{
+    color: rgb(109, 109, 242);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.appName {
+    color: rgb(140, 140, 235);
+}
+
+.headingText{
+    text-align: center;
+    color: rgb(32, 100, 32);
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.flex{
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.w-3{
+    width: 300px;
+}
+.w-4{
+    width: 400px;
+}
+.p-10{
+    padding: 10px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.border{
+    border: 1px solid rgb(163, 162, 162);
+    border-radius: 5px;
+}
+
+.p-5{
+    padding: 5px;
+}
+
+.m-5{
+    margin: 5px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.h-30{
+    height: 30px;
+}
+
+.h-40{
+    height: 40px;
+}
+
+.centerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spacedDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.m-auto{
+    margin: 0 auto;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
