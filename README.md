@@ -1,3 +1,2 @@
-# uniTrack
-A student management system
 # destinotrack
+A student management system
