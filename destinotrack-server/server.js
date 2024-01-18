@@ -26,7 +26,7 @@ const client = new MongoClient(uri, {
 app.use(bodyParser.json());
 app.use(cors());
 
-const database = client.db('unitrack');
+const database = client.db('destinotrack');
 const UsersCollection = database.collection('users');
 const studentsCollection = database.collection('students');
 const attendanceCollection = database.collection('attendance');
