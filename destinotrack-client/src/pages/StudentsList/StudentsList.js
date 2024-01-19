@@ -126,11 +126,71 @@ const StudentsList = () => {
       title: 'Group',
       dataIndex: 'group',
       key: 'group',
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+        <div style={{ padding: 8 }}>
+          <input
+            type="text"
+            placeholder="Search Group"
+            value={selectedKeys[0] || ''} 
+            onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                confirm();
+              }
+            }}
+            style={{ width: 188, marginBottom: 8, display: 'block' }}
+          />
+          <Button
+            type="primary"
+            onClick={() => confirm()}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 90, marginRight: 8 }}
+          >
+            Search
+          </Button>
+          <Button onClick={() => clearFilters()} size="small" style={{ width: 90 }}>
+            Reset
+          </Button>
+        </div>
+      ),
+      filterIcon: (filtered) => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+      onFilter: (value, record) => record.fullName.toLowerCase().includes(value.toLowerCase()),
     },
     {
       title: 'Session Year',
       dataIndex: 'sessionYear',
       key: 'sessionYear',
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+        <div style={{ padding: 8 }}>
+          <input
+            type="text"
+            placeholder="Search session"
+            value={selectedKeys[0] || ''} 
+            onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                confirm();
+              }
+            }}
+            style={{ width: 188, marginBottom: 8, display: 'block' }}
+          />
+          <Button
+            type="primary"
+            onClick={() => confirm()}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 90, marginRight: 8 }}
+          >
+            Search
+          </Button>
+          <Button onClick={() => clearFilters()} size="small" style={{ width: 90 }}>
+            Reset
+          </Button>
+        </div>
+      ),
+      filterIcon: (filtered) => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+      onFilter: (value, record) => record.fullName.toLowerCase().includes(value.toLowerCase()),
     },
     {
       title: 'Phone Number',
