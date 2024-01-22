@@ -104,7 +104,7 @@ app.post('/submitForm', async (req, res) => {
 
   try {
     // Check if student with the same roll and session year already exists
-    const existingStudent = await studentsCollection.findOne({ roll, sessionYear });
+    const existingStudent = await studentsCollection.findOne({ roll, sessionYear, group });
 
     if (existingStudent) {
       return res.status(400).json({ error: 'Student with this roll and session year already exists.' });
